@@ -128,14 +128,14 @@ parameters:
 
 ### StatefulSet 
 
-Alright, now that we have our StorageClass being defined, let's have a look at the actual definition to deploy a postgresql database for an online food magazine: 
+Alright, now that we have our StorageClass being defined, let's have a look at the actual definition to deploy a PostgreSQL database for an online food magazine: 
 
 ```YAML
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: foodmag-app-db
+  name: foodmag-app-db-service
   namespace: stateful-app-dev
   labels:
     app: foodmag-app-db
@@ -191,6 +191,88 @@ spec:
         name: foodmag-app-db-pvc
         labels:
           app: foodmag-app-db
+          env: dev
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "storage-for-dev-and-test"
+        resources:
+          requests:
+            storage: 10Gi
+```
+
+L33t! What about the front-end? Being quite of old school, let's use Drupal which is a perfect example of a very *picky* application when it comes to data hierarchy for the multi-tenancy/multi-site feature. Here is the StatefulSet:
+
+```YAML
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: foodmag-app-fe-service
+  namespace: stateful-app-dev
+  labels:
+    app: foodmag-app-fe
+    env: dev
+spec:
+  type: NodePort
+  ports:
+   - port: 80
+     nodePort: 30080
+  selector:
+    app: foodmag-app-fe
+    env: dev
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: foodmag-app-fe
+  namespace: stateful-app-dev
+spec:
+  selector:
+    matchLabels:
+      app: foodmag-app-fe
+      env: dev
+  serviceName: foodmag-app-fe-service
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: foodmag-app-fe-pvc            
+      labels:
+        app: foodmag-app-fe
+        env: dev
+    spec:
+      initContainers:
+        - name: fix-perms
+          image: drupal:latest
+          command: ['/bin/bash','-c']
+          args: ['/bin/cp -R /var/www/html/sites/ /data/; chown -R www-data:www-data /data/']
+          volumeMounts:
+            - name: foodmag-app-fe-pvc
+              mountPath: /data
+      containers:
+        - name: foodmag-app-fe
+          image: drupal:latest
+          ports:
+            - containerPort: 30080
+              name: foodmag-app-fe
+          volumeMounts:
+            - name: foodmag-app-fe-pvc
+              mountPath: /var/www/html/modules
+              subPath: modules
+            - name: foodmag-app-fe-pvc
+              mountPath: /var/www/html/profiles
+              subPath: profiles
+            - name: foodmag-app-fe-pvc
+              mountPath: /var/www/html/themes
+              subPath: themes
+            - name: foodmag-app-fe-pvc
+              mountPath: /var/www/html/sites
+              subPath: sites
+  volumeClaimTemplates:
+    - metadata:
+        name: foodmag-app-fe-pvc
+        labels:
+          app: foodmag-app-fe
           env: dev
       spec:
         accessModes: ["ReadWriteOnce"]
