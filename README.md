@@ -1,6 +1,6 @@
 ## DeveloperWeek Global Cloud 2021 Conference 
 
-This repository provides the content of an OPEN TALK held at the DeveloperWeek Global Cloud 2021 about how to solve Kubernetes persistent storage at scale and speed the GitOps way. 
+This repository provides the content of an OPEN TALK held at the DeveloperWeek Global Cloud 2021 about *How to solve Kubernetes persistent storage at scale and speed the GitOps way*. 
 
 Persistent storage is one of the most difficult challenges to solve for Kubernetes workloads especially when integrating with continuous deployment solutions. The session will provide the audience with an overview of how to address persistent storage for stateful workload the Kubernetes way and how to operationalize with a common CD practice like GitOps.
 
@@ -26,11 +26,17 @@ Considering the above within a large organization like Google, no wonder why the
 
 Once onboarded on the Kubernetes platform, the above example will not take weeks or days, but a couple of minutes on your own using a declarative configuration file describing a desired state. 
 
-But is true for any type of workload?
+But is true for any type of workload aka the stateful application? 
 
 ## Stateless/Stateful who cares?
 
-Due to the nature of containers, stateless applications are first class citizens benefiting of all the Kubernetes orchestrator features, the standard API and abstraction framework.   
-However, Kubernetes depends on software-defined components to perform at its best like Calico or Cilium for the network, containerd or cri-o for the container runtime, or Traefik or NGINX for Ingress controllers.
+To this shoking question and considering the Kubernetes abstration framework, no one should care!
+
+Let's take a not related example; when a TLS certificate is required for an application, calling a Kubernetes native component like [cert-manager](https://cert-manager.io/docs/) allows the Application Team to self-service the request reducing the lead time for operational readiness with the burden to knwon about the organization current and future choices regarding a certificate provider. 
+
+Let's come back to the stateful application example; when an application need to store and access data, calling a Kubernetes native component to handle persistent volume is mandatory to allow the same frictionless, self-service, and full benefiting of all the Kubernetes perks. 
+
+One key challenge is the data gravity.  
+The TLS certificate will be stored as a Kubernetes Secrets available out of all the *etcd* instances which guarantees a high availability in case of issue. If the persistent data is a the CRM database of a company, we might look at a couple of GB that can't be store in *etcd* 
 
 
