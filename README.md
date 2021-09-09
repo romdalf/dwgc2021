@@ -9,7 +9,7 @@ The content is for educational purposes, is linked to field experience, and, for
 ## Intro
 Moving from a traditional infrastructure to a Kubernetes platform offers a great amount of flexibility and reduced friction in regards of consuming the actual infrastructure resources. 
 
-When working at the large Public Insistution, an Application Team who would request an test environment would results in: 
+Speaking of traditional or legacy infrastructure, when working at the large Public Insistution, an Application Team who would request an test environment would results in: 
 - meeting with Project and Release Manager
 - meeting with IT Service Manager
 - Change Request with the following tickets:
@@ -19,8 +19,11 @@ When working at the large Public Insistution, an Application Team who would requ
   - 1 to 5 tickets for the Backup team for the Application backup 
   - 1 to 3 tickets for the Security team (Compliance, IAM, scan, ...)
 
-At the end of this "journey", without any automation, 4 to 6 weeks would have passed, about 2 with a certain degree of automation. 
+At the end of this "journey", without any automation, at best 4 to 6 weeks would have passed, about 2 with a certain degree of automation. 
 Guess what... at this stage, there is not yet an application being deployed or a connection to a clustered DB within the organization! 
 
+Considering the above within a large organization like Google, no wonder why they kicked off a project like Kubernetes to build a full infrastructure and dependency abstraction framework to shortcut the lead time and SLA driven teams. 
+
+Once onboarded on the Kubernetes platform, the above example will not take weeks or days, but a couple of minutes. 
 
 ## 
