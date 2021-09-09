@@ -46,10 +46,63 @@ But! Alright, as Application Teams, we indeed don't care about all that storage 
 - storage-for-production
 
 That's it! Well, one more thing, then we will done selling the dreams ;)  
-In 99% of cases, when deploying a stateful application, a specific deployment type called ["StatefulSet"](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) has to be used to "ask" the Kubernetes orchestrator to:
+In 99% of cases, when deploying a stateful application, a specific deployment type called ["StatefulSet"](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) (and more [here](https://cloud.google.com/kubernetes-engine/docs/how-to/stateful-apps)) has to be used to "ask" the Kubernetes orchestrator to:
 - be gentle! It's not a stateless application. 
 - respect the order! With stateful application, order is required for deployment, scaling and updating   
 
+## show me the YAML!
 
-
+Lots of intro and explanation for just about this much: 
+```YAML
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None
+  selector:
+    app: nginx
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+  labels:
+    app: nginx
+spec:
+  serviceName: "nginx"
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 14
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: k8s.gcr.io/nginx-slim:0.8
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: thin-disk
+```
 
