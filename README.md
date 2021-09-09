@@ -30,4 +30,7 @@ But is true for any type of workload?
 
 ## Stateless/Stateful who cares?
 
+Due to the nature of containers, stateless applications are first class citizens benefiting of all the Kubernetes orchestrator features, the standard API and abstraction framework.   
+However, Kubernetes depends on software-defined components to perform at its best like Calico or Cilium for the network, containerd or cri-o for the container runtime, or Traefik or NGINX for Ingress controllers.
+
 
