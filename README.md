@@ -1,4 +1,4 @@
-## DeveloperWeek Global Cloud Conference 
+## DeveloperWeek Global Cloud 2021 Conference 
 
 This repository provides the content of an OPEN TALK held at the DeveloperWeek Global Cloud 2021 about how to solve Kubernetes persistent storage at scale and speed the GitOps way. 
 
@@ -24,6 +24,6 @@ Guess what... at this stage, there is not yet an application being deployed or a
 
 Considering the above within a large organization like Google, no wonder why they kicked off a project like Kubernetes to build a full infrastructure and dependency abstraction framework to shortcut the lead time and SLA driven teams. 
 
-Once onboarded on the Kubernetes platform, the above example will not take weeks or days, but a couple of minutes. 
+Once onboarded on the Kubernetes platform, the above example will not take weeks or days, but a couple of minutes with the power of a couple of YAML files. But is true for any type of workload?
 
 ## 
