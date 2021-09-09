@@ -38,7 +38,18 @@ Let's come back to the stateful application example; when an application need to
 
 Well guess what... Kubernetes native Software-Defined-Storage exists! And the good thing is that there are no needs to learn any CLI commands, skill up in storage terminology except for capacity and the minimum Kubernetes object definitions, or to perform extensive automation to hook up the old legacy storage to the Kubernetes platform.
 
-## we all agree, we don't care!
+## We all agree, we don't care!
+
+But! Alright, as Application Teams, we indeed don't care about all that storage (or snorage for snoring + storage as I have heard it a couple of time). Our Infrastructure/Platform colleagues who knowns about that stuff created for us the 2 or 3 StorageClass:
+- storage-for-dev-and-test
+- storage-for-acceptance
+- storage-for-production
+
+That's it! Well, one more thing, then we will done selling the dreams ;)
+When deploying a stateful application, a specific deployment type called ["StatefulSet"](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) has to be used so that Kubernetes is getting the head's up about the fact that:
+- Be gentle, it's not a stateless application
+- Order! With stateful application, order is required for deployment, scaling and updating   
+
 
 
 
