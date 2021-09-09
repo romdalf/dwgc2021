@@ -52,7 +52,81 @@ In 99% of cases, when deploying a stateful application, a specific deployment ty
 
 ## show me the YAML!
 
-Lots of intro and explanation for just about this much: 
+Let's go from the long intro to the demo. 
+
+### StorageClass
+What do we need first? Well, as shared earlier, there is a need for StorageClass defining the desired state for a technical and business perspective. The Ops Team might defined the followings:
+
+storage-for-dev-and-test
+```YAML
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: storage-for-dev-and-test
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+parameters:
+  fsType: ext4
+  pool: default
+  csi.storage.k8s.io/controller-expand-secret-name: csi-controller-expand-secret
+  csi.storage.k8s.io/controller-publish-secret-name: csi-controller-publish-secret
+  csi.storage.k8s.io/node-publish-secret-name: csi-node-publish-secret
+  csi.storage.k8s.io/provisioner-secret-name: csi-provisioner-secret
+  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
+  csi.storage.k8s.io/controller-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+```
+
+storage-for-acceptance
+```YAML
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: storage-for-acceptance
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+parameters:
+  fsType: ext4
+  pool: default
+  storageos.com/replicas: "1"
+  csi.storage.k8s.io/controller-expand-secret-name: csi-controller-expand-secret
+  csi.storage.k8s.io/controller-publish-secret-name: csi-controller-publish-secret
+  csi.storage.k8s.io/node-publish-secret-name: csi-node-publish-secret
+  csi.storage.k8s.io/provisioner-secret-name: csi-provisioner-secret
+  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
+  csi.storage.k8s.io/controller-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+```
+
+storage-for-production
+```YAML
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: storage-for-production
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+parameters:
+  fsType: ext4
+  pool: default
+  storageos.com/replicas: "2"
+  storageos.com/encryption: "true"
+  csi.storage.k8s.io/controller-expand-secret-name: csi-controller-expand-secret
+  csi.storage.k8s.io/controller-publish-secret-name: csi-controller-publish-secret
+  csi.storage.k8s.io/node-publish-secret-name: csi-node-publish-secret
+  csi.storage.k8s.io/provisioner-secret-name: csi-provisioner-secret
+  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
+  csi.storage.k8s.io/controller-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
+  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+```
+
+
 ```YAML
 ---
 apiVersion: v1
