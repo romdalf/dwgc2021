@@ -6,4 +6,21 @@ Persistent storage is one of the most difficult challenges to solve for Kubernet
 
 The content is for educational purposes, is linked to field experience, and, for the demo, tested on Google Cloud. The content can be reused freely as-is. StorageOS Customer Success is available to provide the audience with the supporting experience in such journey.
 
+## Intro
+Moving from a traditional infrastructure to a Kubernetes platform offers a great amount of flexibility and reduced friction in regards of consuming the actual infrastructure resources. 
 
+When working at the large Public Insistution, an Application Team who would request an test environment would results in: 
+- meeting with Project and Release Manager
+- meeting with IT Service Manager
+- Change Request with the following tickets:
+  - 3 to 5 tickets for the Network team (IP, DNS, Load Balancer, Firewall, Proxy, ...)
+  - 1 to 5 tickets for the Compute team (depending on the number of machines, OS type, patching policy, ...)
+  - 1 to 5 tickets for the Backup & Storage team (storage space, backup, mirror, special scheduling, special retention, ...)
+  - 1 to 5 tickets for the Backup team for the Application backup 
+  - 1 to 3 tickets for the Security team (Compliance, IAM, scan, ...)
+
+At the end of this "journey", without any automation, 4 to 6 weeks would have passed, about 2 with a certain degree of automation. 
+Guess what... at this stage, there is not yet an application being deployed or a connection to a clustered DB within the organization! 
+
+
+## 
