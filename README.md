@@ -45,10 +45,10 @@ But! Alright, as Application Teams, we indeed don't care about all that storage 
 - storage-for-acceptance
 - storage-for-production
 
-That's it! Well, one more thing, then we will done selling the dreams ;)
-When deploying a stateful application, a specific deployment type called ["StatefulSet"](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) has to be used so that Kubernetes is getting the head's up about the fact that:
-- Be gentle, it's not a stateless application
-- Order! With stateful application, order is required for deployment, scaling and updating   
+That's it! Well, one more thing, then we will done selling the dreams ;)  
+In 99% of cases, when deploying a stateful application, a specific deployment type called ["StatefulSet"](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) has to be used to "ask" the Kubernetes orchestrator to:
+- be gentle! It's not a stateless application. 
+- respect the order! With stateful application, order is required for deployment, scaling and updating   
 
 
 
