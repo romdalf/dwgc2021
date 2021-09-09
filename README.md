@@ -126,57 +126,77 @@ parameters:
   csi.storage.k8s.io/provisioner-secret-namespace: kube-system
 ```
 
+### StatefulSet 
+
+Alright, now that we have our StorageClass being defined, let's have a look at the actual definition to deploy a 
 
 ```YAML
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: foodmag-app-db
+  namespace: stateful-app-dev
   labels:
-    app: nginx
+    app: foodmag-app-db
+    env: dev
 spec:
+  type: ClusterIP
   ports:
-  - port: 80
-    name: web
-  clusterIP: None
+   - port: 5432
   selector:
-    app: nginx
+    app: foodmag-app-db
+    env: dev
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: web
-  labels:
-    app: nginx
+  name: foodmag-app-db
+  namespace: stateful-app-dev
 spec:
-  serviceName: "nginx"
   selector:
     matchLabels:
-      app: nginx
-  replicas: 14
+      app: foodmag-app-db
+      env: dev
+  serviceName: foodmag-app-db-service
+  replicas: 1
   template:
     metadata:
+      annotations:
+        backup.velero.io/backup-volumes: foodmag-app-db-pvc
       labels:
-        app: nginx
+        app: foodmag-app-db
+        env: dev
     spec:
       containers:
-      - name: nginx
-        image: k8s.gcr.io/nginx-slim:0.8
-        ports:
-        - containerPort: 80
-          name: web
-        volumeMounts:
-        - name: www
-          mountPath: /usr/share/nginx/html
+        - name: foodmag-app-db
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+              name: foodmag-app-db
+          env:
+            - name: POSTGRES_DB
+              value: foodmagappdb
+            - name: POSTGRES_USER
+              value: foodmagapp
+            - name: POSTGRES_PASSWORD
+              value: foodmagpassword
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          volumeMounts:
+            - name: foodmag-app-db-pvc
+              mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
-  - metadata:
-      name: www
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
-      storageClassName: thin-disk
+    - metadata:
+        name: foodmag-app-db-pvc
+        labels:
+          app: foodmag-app-db
+          env: dev
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "storage-for-dev-and-test"
+        resources:
+          requests:
+            storage: 10Gi
 ```
 
