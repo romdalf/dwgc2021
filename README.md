@@ -128,7 +128,7 @@ parameters:
 
 ### StatefulSet 
 
-Alright, now that we have our StorageClass being defined, let's have a look at the actual definition to deploy a 
+Alright, now that we have our StorageClass being defined, let's have a look at the actual definition to deploy a postgresql database for an online food magazine: 
 
 ```YAML
 ---
