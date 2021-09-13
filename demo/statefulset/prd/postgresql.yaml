@@ -19,7 +19,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: foodmag-app-db
-  namespace: stateful-app-prod
+  namespace: stateful-app-prd
 spec:
   selector:
     matchLabels:
