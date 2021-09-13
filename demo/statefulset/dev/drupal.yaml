@@ -74,4 +74,4 @@ spec:
         storageClassName: "storage-for-dev-and-test"
         resources:
           requests:
-            storage: 10Gi
+            storage: 1Gi
