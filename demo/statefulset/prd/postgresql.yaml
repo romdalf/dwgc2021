@@ -64,4 +64,4 @@ spec:
         storageClassName: "storage-for-production"
         resources:
           requests:
-            storage: 10Gi
+            storage: 5Gi
