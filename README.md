@@ -7,6 +7,28 @@ Persistent storage is one of the most difficult challenges to solve for Kubernet
 The content is for educational purposes, is linked to field experience, and, for the demo, tested on Google Cloud. The content can be reused freely as-is. StorageOS Customer Success is available to provide the audience with the supporting experience in such journey.
 
 ## Intro
+The last two decades of IT innovations have been addressing the consumption of resources; from an usage and cost efficiency up.  
+However, even with the introduction of Agile and DevOps practices leading to an organized, scalable, and systemic automation, the speed of deployment within large enterprise did not improve due to the heavily siloed IT department. 
+The below graph presents the actual run time for all related tasks to accomplish versus the lead time which includes the run time AND the SLA driven organization in which multiple team will pass the "ball". This curve is an exponentially increasing with additional third parties like managed services.   
+
+![virtualization stack](assets/virtstack.png)
+
+## Kubernetes
+Large software companies with the need of a fast go-to-market had to change their models to guarantee fast development and release cycles.  
+With the need of companies like Google, a new approach to efficiency was taken wihtin the form of Kubernetes.  
+Why is it different?  
+Virtualization stack provisions every components as isolated ones in a serialized way, most likely reflecting the organizational structure and processes of the IT department.  
+The major shift here is to: 
+- enforce a defacto Infrastructure-as-Code approach defining a desired state for every components 
+- enforce a software-define approach allowing to reduce the manual or semi-automated actions to configure hardware components 
+- provide a full abstraction layer through the usage of an API driven solution to deal with any components including deploying applications 
+
+When an Application Team has to deploy an application, in any of the DTAP stages, there is no need to create a dozen tickets to a dozen or more teams. Instead, the actual application needs is detailed as a desired state within a YAML file which will be submitted and processed by Kubernetes.  
+The run time can become the lead time!
+
+![kubernetes stack](assets/k8sstack.png)
+
+
 Moving from a traditional infrastructure to a Kubernetes platform offers a great amount of flexibility and reduced friction in regards of consuming the actual infrastructure resources. 
 
 Speaking of traditional or legacy infrastructure, when working at the large Public Insistution, an Application Team who would request an test environment would results in: 
