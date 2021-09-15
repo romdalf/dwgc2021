@@ -38,21 +38,21 @@ Not having such software-defined components to handle the storage part will resu
 ![kubernetes hybrid stack](assets/k8sstacklegstorage.png)
 
 ## Stateless/Stateful who cares?
-To this shoking question and considering the Kubernetes abstration framework, no one should care!
+To this shoking question and considering the Kubernetes abstration framework, no one should care!  
+By introducing a cloud native software-defined data management layer, the Application Team can self-service themselve again to build and deploy at speed and scale.  
+Like for a stateless application, the overall deployment manifest will contain the desired state for all the required components that the application will be using including elements like storage and backup.  
+This allows to reduce the day 1 and day 2 operation burden for both the Infrastructure and Application team.  
 
 ![kubernetes native stack](assets/k8sstackcnstorage.png)
-Let's take a not related example; when a TLS certificate is required for an application, calling a Kubernetes native component like [cert-manager](https://cert-manager.io/docs/) allows the Application Team to self-service the request reducing the lead time for operational readiness with the burden to knwon about the organization current and future choices regarding a certificate provider. 
-
-Let's come back to the stateful application example; when an application need to store and access data, calling a Kubernetes native component to handle persistent volume is mandatory to allow the same frictionless, self-service, and benefiting of all the Kubernetes perks. 
-
-Well guess what... Kubernetes native Software-Defined-Storage exists! And the good thing is that there are no needs to learn any CLI commands, skill up in storage terminology except for capacity and the minimum Kubernetes object definitions, or to perform extensive automation to hook up the old legacy storage to the Kubernetes platform.
 
 ## We all agree, we don't care!
+Alright, but some management folks might from a separation of duties, four eyes principle and all the security requirements for a healthy IT department serving the business.   
 
-But! Alright, as Application Teams, we indeed don't care about all that storage (or snorage for snoring + storage as I have heard it a couple of time). Our Infrastructure/Platform colleagues who knowns about that stuff created for us the 2 or 3 StorageClass:
-- storage-for-dev-and-test
-- storage-for-acceptance
-- storage-for-production
+### Infrastructure Team
+Our Infrastructure/Platform colleagues who knowns about that storage stuff will create for the Application Teams Kubernetes StorageClass which represents level of services:
+- storage-for-dev-and-test; no replication, no encryption, no compression - the bare minimum to support the Developers to work on a stateful application.
+- storage-for-acceptance; 1 replica, no encryption, no compression - required to validate the application behaviour when there are failures/partitioning. 
+- storage-for-production; 2 replicas, encryption, no compression - to guarantee the high availability of the data and its safety. 
 
 That's it! Well, one more thing, then we will done selling the dreams ;)  
 In 99% of cases, when deploying a stateful application, a specific deployment type called ["StatefulSet"](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) (and more [here](https://cloud.google.com/kubernetes-engine/docs/how-to/stateful-apps)) has to be used to "ask" the Kubernetes orchestrator to:
