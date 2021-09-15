@@ -59,7 +59,7 @@ Note: StorageClass is a special Kubernetes API object that can't be edit/updated
 
 Here is how it translates from a YAML definition perspective:  
 
-#### storage-for-dev-and-test
+#### [storage-for-dev-and-test](demo/storageclass/storage-for-dev-and-test.yaml)
 ```YAML
 ---
 apiVersion: storage.k8s.io/v1
@@ -71,14 +71,7 @@ allowVolumeExpansion: true
 parameters:
   fsType: ext4
   pool: default
-  csi.storage.k8s.io/controller-expand-secret-name: csi-controller-expand-secret
-  csi.storage.k8s.io/controller-publish-secret-name: csi-controller-publish-secret
-  csi.storage.k8s.io/node-publish-secret-name: csi-node-publish-secret
-  csi.storage.k8s.io/provisioner-secret-name: csi-provisioner-secret
-  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
-  csi.storage.k8s.io/controller-publish-secret-namespace: kube-system
-  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
-  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+-snip-
 ```
 
 #### storage-for-acceptance
@@ -94,14 +87,7 @@ parameters:
   fsType: ext4
   pool: default
   storageos.com/replicas: "1"
-  csi.storage.k8s.io/controller-expand-secret-name: csi-controller-expand-secret
-  csi.storage.k8s.io/controller-publish-secret-name: csi-controller-publish-secret
-  csi.storage.k8s.io/node-publish-secret-name: csi-node-publish-secret
-  csi.storage.k8s.io/provisioner-secret-name: csi-provisioner-secret
-  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
-  csi.storage.k8s.io/controller-publish-secret-namespace: kube-system
-  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
-  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+-snip-
 ```
 
 #### storage-for-production
@@ -118,14 +104,7 @@ parameters:
   pool: default
   storageos.com/replicas: "2"
   storageos.com/encryption: "true"
-  csi.storage.k8s.io/controller-expand-secret-name: csi-controller-expand-secret
-  csi.storage.k8s.io/controller-publish-secret-name: csi-controller-publish-secret
-  csi.storage.k8s.io/node-publish-secret-name: csi-node-publish-secret
-  csi.storage.k8s.io/provisioner-secret-name: csi-provisioner-secret
-  csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
-  csi.storage.k8s.io/controller-publish-secret-namespace: kube-system
-  csi.storage.k8s.io/node-publish-secret-namespace: kube-system
-  csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+-snip-
 ```
 
 ### Application Team
