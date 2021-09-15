@@ -74,7 +74,7 @@ parameters:
 -snip-
 ```
 
-#### storage-for-acceptance
+#### [storage-for-acceptance](demo/storageclass/storage-for-acceptance.yaml)
 ```YAML
 ---
 apiVersion: storage.k8s.io/v1
@@ -90,7 +90,7 @@ parameters:
 -snip-
 ```
 
-#### storage-for-production
+#### [storage-for-production](demo/storageclass/storage-for-acceptance.yaml)
 ```YAML
 ---
 apiVersion: storage.k8s.io/v1
