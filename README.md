@@ -50,9 +50,9 @@ Alright, but some management folks might from a separation of duties, four eyes 
 
 ### Infrastructure Team
 Our Infrastructure/Platform colleagues who knowns about that storage stuff will create for the Application Teams Kubernetes StorageClass which represents level of services:
-- storage-for-dev-and-test; no replication, no encryption, no compression - the bare minimum to support the Developers to work on a stateful application.
-- storage-for-acceptance; 1 replica, no encryption, no compression - required to validate the application behaviour when there are failures/partitioning. 
-- storage-for-production; 2 replicas, encryption, no compression - to guarantee the high availability of the data and its safety. 
+- [storage-for-dev-and-test](#storage-for-dev-and-test); no replication, no encryption, no compression - the bare minimum to support the Developers to work on a stateful application.
+- [storage-for-acceptance](#storage-for-acceptance); 1 replica, no encryption, no compression - required to validate the application behaviour when there are failures/partitioning. 
+- [storage-for-production](#storage-for-production); 2 replicas, encryption, no compression - to guarantee the high availability of the data and its safety. 
 
 These StorageClass should be stored in a Git repository to track changes and allow a GitOps approach to synchronize and track any drift from a Kubernetes side.   
 Note: StorageClass is a special Kubernetes API object that can't be edit/updated when deployed. It needs to be deleted and then sync back.  
