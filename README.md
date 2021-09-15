@@ -269,13 +269,29 @@ spec:
 
 ## Demo time! 
 
-Since the talk has recordings, the demo will be using YouTube videos in this order:
+Since the talk has recordings, the demo will be using YouTube videos. Note that there is an existing playlist including a dry-run of the OPEN TALK. 
+
+Playlist: https://youtube.com/playlist?list=PLW2Ytr_dU54Fqhlcm5AWJTIzDzb0uwC8l 
 
 ### Setting up the environment
 
 This first video is helping to get the StorageOS layer in place as the software-defined storage component interacting with Kubernetes to provide a true cloud native data management layer.  
 There is a free-tier for personal use and the deployment is agnostic of any Kubernetes flavors:  
 
-Title: Demo 1/3: https://www.youtube.com/watch?v=dM7qmHEjiH8
+video: https://www.youtube.com/watch?v=dM7qmHEjiH8
 
-### 
+### setting up the StorageClass
+
+This second video is helping to get the StorageClass in place using Iac and GitOps practices via ArgoCD. It also highlights the specific restriction regarding updating a StorageClass object. 
+
+video: https://www.youtube.com/watch?v=0wnNU9hsVkk 
+
+### deploying 
+
+This last video is helping to get the StatefulSet deployed for 3 environment types with different StorageClass while also showing the power of GitOps to catch configuration drift when the Git repository is updated with a new definition of the Statefulset. 
+
+video: https://www.youtube.com/watch?v=1VOVBi5BnQA 
+
+## Takeaway
+Dealing with persistent storage on Kubernetes doesn't require the Application Team to experience again the old world of tickets and long lead time to get the necessary resources to deploy. Same goes for the Infrastructure Team who wishes to reduce the day 1 and day 2 operations to the minimum without the need to have specialized skills in one or multiple vendors.   
+Using a cloud native data management layer allow every team members to interact the Kubernetes way with the storage part like with any other components and without any friction!
