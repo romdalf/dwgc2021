@@ -2,7 +2,7 @@ Table of Content
 * [Intro](#intro)
 * [Kubernetes](#kubernetes)
 * [Stateful applications](#stateful-applications)
-* [Stteless/Stateful who cares?](#statelessstateful-who-cares)
+* [Stateless/Stateful who cares?](#statelessstateful-who-cares)
 * [We all agree, we don't care!](#we-all-agree-we-dont-care)
   * [Infrastructure Team](#infrastructure-team)
   * [Application Team](#application-team)
