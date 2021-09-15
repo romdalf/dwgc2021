@@ -57,8 +57,9 @@ Our Infrastructure/Platform colleagues who knowns about that storage stuff will 
 These StorageClass should be stored in a Git repository to track changes and allow a GitOps approach to synchronize and track any drift from a Kubernetes side.   
 Note: StorageClass is a special Kubernetes API object that can't be edit/updated when deployed. It needs to be deleted and then sync back.  
 
-Here is how it translates from a YAML definition perspective:
-storage-for-dev-and-test
+Here is how it translates from a YAML definition perspective:  
+
+#### storage-for-dev-and-test
 ```YAML
 ---
 apiVersion: storage.k8s.io/v1
@@ -80,7 +81,7 @@ parameters:
   csi.storage.k8s.io/provisioner-secret-namespace: kube-system
 ```
 
-storage-for-acceptance
+#### storage-for-acceptance
 ```YAML
 ---
 apiVersion: storage.k8s.io/v1
@@ -103,7 +104,7 @@ parameters:
   csi.storage.k8s.io/provisioner-secret-namespace: kube-system
 ```
 
-storage-for-production
+#### storage-for-production
 ```YAML
 ---
 apiVersion: storage.k8s.io/v1
