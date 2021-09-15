@@ -54,18 +54,10 @@ Our Infrastructure/Platform colleagues who knowns about that storage stuff will 
 - storage-for-acceptance; 1 replica, no encryption, no compression - required to validate the application behaviour when there are failures/partitioning. 
 - storage-for-production; 2 replicas, encryption, no compression - to guarantee the high availability of the data and its safety. 
 
-That's it! Well, one more thing, then we will done selling the dreams ;)  
-In 99% of cases, when deploying a stateful application, a specific deployment type called ["StatefulSet"](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) (and more [here](https://cloud.google.com/kubernetes-engine/docs/how-to/stateful-apps)) has to be used to "ask" the Kubernetes orchestrator to:
-- be gentle! It's not a stateless application. 
-- respect the order! With stateful application, order is required for deployment, scaling and updating   
+These StorageClass should be stored in a Git repository to track changes and allow a GitOps approach to synchronize and track any drift from a Kubernetes side.   
+Note: StorageClass is a special Kubernetes API object that can't be edit/updated when deployed. It needs to be deleted and then sync back.  
 
-## show me the YAML!
-
-Let's go from the long intro to the demo. 
-
-### StorageClass
-What do we need first? Well, as shared earlier, there is a need for StorageClass defining the desired state for a technical and business perspective. The Ops Team might defined the followings:
-
+Here is how it translates from a YAML definition perspective:
 storage-for-dev-and-test
 ```YAML
 ---
@@ -134,6 +126,22 @@ parameters:
   csi.storage.k8s.io/node-publish-secret-namespace: kube-system
   csi.storage.k8s.io/provisioner-secret-namespace: kube-system
 ```
+
+
+
+
+That's it! Well, one more thing, then we will done selling the dreams ;)  
+In 99% of cases, when deploying a stateful application, a specific deployment type called ["StatefulSet"](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) (and more [here](https://cloud.google.com/kubernetes-engine/docs/how-to/stateful-apps)) has to be used to "ask" the Kubernetes orchestrator to:
+- be gentle! It's not a stateless application. 
+- respect the order! With stateful application, order is required for deployment, scaling and updating   
+
+## show me the YAML!
+
+Let's go from the long intro to the demo. 
+
+### StorageClass
+What do we need first? Well, as shared earlier, there is a need for StorageClass defining the desired state for a technical and business perspective. The Ops Team might defined the followings:
+
 
 ### StatefulSet 
 
