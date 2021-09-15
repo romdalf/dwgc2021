@@ -28,32 +28,19 @@ The run time can become the lead time!
 
 ![kubernetes stack](assets/k8sstack.png)
 
+## Stateful applications 
+There is a massive secret to be shared regarding Kubernetes; it is designed to run stateless workload or, in other words, applications that don't need persistence of data.  
+Kubernetes is an orchestrator for containers and these are based on read-only container images. Any data generated during the run time of the container will be in memory. Once the workload is stop or even rescheduled on a different node, that data will be lost.  
+Kubernetes is not a storage orchestrator like it is not a network orchestrator, it relies on software-defined components to handle such requirements.  
 
-Moving from a traditional infrastructure to a Kubernetes platform offers a great amount of flexibility and reduced friction in regards of consuming the actual infrastructure resources. 
+Not having such software-defined components to handle the storage part will result in having a hybrid operational model calling for tickets handling for attaching storage to the Kubernetes nodes generating a wait time to associated with the run time as shown with the next graph.
 
-Speaking of traditional or legacy infrastructure, when working at the large Public Insistution, an Application Team who would request an test environment would results in: 
-- meeting with Project and Release Manager
-- meeting with IT Service Manager
-- Change Request with the following tickets:
-  - 3 to 5 tickets for the Network team (IP, DNS, Load Balancer, Firewall, Proxy, ...)
-  - 1 to 5 tickets for the Compute team (depending on the number of machines, OS type, patching policy, ...)
-  - 1 to 5 tickets for the Backup & Storage team (storage space, backup, mirror, special scheduling, special retention, ...)
-  - 1 to 5 tickets for the Backup team for the Application backup 
-  - 1 to 3 tickets for the Security team (Compliance, IAM, scan, ...)
-
-At the end of this "journey", without any automation, at best 4 to 6 weeks would have passed, about 2 with a certain degree of automation. 
-Guess what... at this stage, there is not yet an application being deployed or a connection to a clustered DB within the organization! 
-
-Considering the above within a large organization like Google, no wonder why they kicked off a project like Kubernetes to build a full infrastructure and dependency abstraction framework to shortcut the lead time and SLA driven teams. 
-
-Once onboarded on the Kubernetes platform, the above example will not take weeks or days, but a couple of minutes on your own using a declarative configuration file describing a desired state. 
-
-But is true for any type of workload aka the stateful application? 
+![kubernetes hybrid stack](assets/k8sstacklegstorage.png)
 
 ## Stateless/Stateful who cares?
-
 To this shoking question and considering the Kubernetes abstration framework, no one should care!
 
+![kubernetes native stack](assets/k8sstackcnstorage.png)
 Let's take a not related example; when a TLS certificate is required for an application, calling a Kubernetes native component like [cert-manager](https://cert-manager.io/docs/) allows the Application Team to self-service the request reducing the lead time for operational readiness with the burden to knwon about the organization current and future choices regarding a certificate provider. 
 
 Let's come back to the stateful application example; when an application need to store and access data, calling a Kubernetes native component to handle persistent volume is mandatory to allow the same frictionless, self-service, and benefiting of all the Kubernetes perks. 
