@@ -133,17 +133,7 @@ Using such deployment type tells Kubernetes orchestrator to:
 - be gentle! It's not a stateless application, there is precious data that we want to keep. 
 - respect the order! With stateful workload, order is required for deploying, scaling and updating the application  
 
-## show me the YAML!
-
-Let's go from the long intro to the demo. 
-
-### StorageClass
-What do we need first? Well, as shared earlier, there is a need for StorageClass defining the desired state for a technical and business perspective. The Ops Team might defined the followings:
-
-
-### StatefulSet 
-
-Alright, now that we have our StorageClass being defined, let's have a look at the actual definition to deploy a PostgreSQL database for an online food magazine: 
+Here is an example of a StatefulSet for a PostgreSQL database available with the *demo* directory of this repository: 
 
 ```YAML
 ---
@@ -215,7 +205,7 @@ spec:
             storage: 10Gi
 ```
 
-L33t! What about the front-end? Being quite of old school, let's use Drupal which is a perfect example of a very *picky* application when it comes to data hierarchy for the multi-tenancy/multi-site feature. Here is the StatefulSet:
+Here is another example of StatefulSet for an old school CMS called Drupal:
 
 ```YAML
 ---
