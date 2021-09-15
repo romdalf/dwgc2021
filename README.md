@@ -267,3 +267,13 @@ spec:
             storage: 10Gi
 ```
 
+## Demo time! 
+
+Since the talk has recordings, the demo will be using YouTube videos in this order:
+
+### Setting up the environment
+
+This first video is helping to get the StorageOS layer in place as the software-defined storage component interacting with Kubernetes to provide a true cloud native data management layer.  
+There is a free-tier for personal use and the deployment is agnostic of any Kubernetes flavors:  
+
+![demo1-3](https://www.youtube.com/watch?v=dM7qmHEjiH8)
