@@ -127,13 +127,11 @@ parameters:
   csi.storage.k8s.io/provisioner-secret-namespace: kube-system
 ```
 
-
-
-
-That's it! Well, one more thing, then we will done selling the dreams ;)  
-In 99% of cases, when deploying a stateful application, a specific deployment type called ["StatefulSet"](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) (and more [here](https://cloud.google.com/kubernetes-engine/docs/how-to/stateful-apps)) has to be used to "ask" the Kubernetes orchestrator to:
-- be gentle! It's not a stateless application. 
-- respect the order! With stateful application, order is required for deployment, scaling and updating   
+### Application Team
+The only requirement is to use a StatefulSet deployment type for the application when deploying a stateful application, the definition is available here ["StatefulSet"](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) (and more [here](https://cloud.google.com/kubernetes-engine/docs/how-to/stateful-apps)).  
+Using such deployment type tells Kubernetes orchestrator to:
+- be gentle! It's not a stateless application, there is precious data that we want to keep. 
+- respect the order! With stateful workload, order is required for deploying, scaling and updating the application  
 
 ## show me the YAML!
 
