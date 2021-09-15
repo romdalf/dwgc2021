@@ -8,7 +8,7 @@ allowVolumeExpansion: true
 parameters:
   fsType: ext4
   pool: default
-  storageos.com/replicas: "2"
+  storageos.com/replicas: "1"
   csi.storage.k8s.io/controller-expand-secret-name: csi-controller-expand-secret
   csi.storage.k8s.io/controller-publish-secret-name: csi-controller-publish-secret
   csi.storage.k8s.io/node-publish-secret-name: csi-node-publish-secret
