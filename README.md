@@ -1,3 +1,15 @@
+Table of Content
+* [Intro](#intro)
+* [Kubernetes](#kubernetes)
+* [Stateful applications](#stateful-applications)
+* [Stteless/Stateful who cares?](#statelessstateful-who-cares)
+* [We all agree, we don't care!](#we-all-agree-we-dont-care)
+  * [Infrastructure Team](#infrastructure-team)
+  * [Application Team](#application-team)
+* [Demo time!](#demo-time)
+* [Takeaway](#takeaway)
+
+
 ## DeveloperWeek Global Cloud 2021 Conference 
 
 This repository provides the content of an OPEN TALK held at the DeveloperWeek Global Cloud 2021 about *How to solve Kubernetes persistent storage at scale and speed the GitOps way*. 
@@ -273,20 +285,20 @@ Since the talk has recordings, the demo will be using YouTube videos. Note that 
 
 playlist: [DeveloperWeek Global Cloud 2021](https://youtube.com/playlist?list=PLW2Ytr_dU54Fqhlcm5AWJTIzDzb0uwC8l) 
 
-### Setting up the environment
+#### Setting up the environment
 
 This first video is helping to get the StorageOS layer in place as the software-defined storage component interacting with Kubernetes to provide a true cloud native data management layer.  
 There is a free-tier for personal use and the deployment is agnostic of any Kubernetes flavors:  
 
 video: [Demo part 1](https://www.youtube.com/watch?v=dM7qmHEjiH8)
 
-### setting up the StorageClass
+#### Setting up the StorageClass
 
 This second video is helping to get the StorageClass in place using Iac and GitOps practices via ArgoCD. It also highlights the specific restriction regarding updating a StorageClass object. 
 
 video: [Demo part 2](https://www.youtube.com/watch?v=0wnNU9hsVkk) 
 
-### deploying 
+#### Deploying 
 
 This last video is helping to get the StatefulSet deployed for 3 environment types with different StorageClass while also showing the power of GitOps to catch configuration drift when the Git repository is updated with a new definition of the Statefulset. 
 
